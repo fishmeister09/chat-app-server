@@ -4,17 +4,17 @@ const http = require('http');
 const cors = require('cors');
 const { Server } = require('socket.io');
 
-app.use(cors());
+const corsOptions ={
+    origin:'http://localhost:3000', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200,
+    methods: ['GET', 'POST'],
+}
+app.use(cors(corsOptions));
 
 const server = http.createServer(app);
 
-const io = new Server(server, {
-  cors: {
-    origin: '*',
-    credentials: true,
-    methods: ['GET', 'POST'],
-  },
-});
+const io = new Server(server);
 let users = [];
 var removeUser = (userId) =>
   users.find((u, i) => u.ID == userId && users.splice(i, 1));

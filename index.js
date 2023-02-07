@@ -4,14 +4,27 @@ const http = require('http');
 const cors = require('cors');
 const { Server } = require('socket.io');
 
-const corsOpts = {
-  origin: '*',
-  methods: ['GET', 'POST'],
-};
-app.use(cors(corsOpts));
+// const corsOpts = {
+//   origin: 'https://chat-app-q9tg.vercel.app/',
 
-app.get('/', (req, res) => {
-  res.send('<h1>Hey Socket.io</h1>');
+//   methods: ['GET', 'POST'],
+// };
+// app.use(cors(corsOpts));
+
+// app.get('/', (req, res) => {
+//   res.send('<h1>Hey Socket.io</h1>');
+// });
+
+router.get('/', function (req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST'); // If needed
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-Requested-With,content-type'
+  ); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  res.send('cors problem fixed:)');
 });
 const server = http.createServer(app);
 

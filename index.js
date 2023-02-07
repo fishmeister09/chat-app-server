@@ -1,34 +1,22 @@
 const express = require('express');
 const app = express();
-const http = require('http');
-const cors = require('cors');
-const { Server } = require('socket.io');
+// const http = require('http');
+// const cors = require('cors');
+// const { Server } = require('socket.io');
 
-// const corsOpts = {
-//   origin: 'https://chat-app-q9tg.vercel.app/',
-
-//   methods: ['GET', 'POST'],
-// };
 // app.use(cors(corsOpts));
+const server = require('http').createServer(app);
+const io = require('socket.io')(server, {
+  cors: {
+    origin: '*',
+    methods: ['GET', 'POST'],
+  },
+});
 
-// app.get('/', (req, res) => {
-//   res.send('<h1>Hey Socket.io</h1>');
-// });
-
-app.get('/', function (req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST'); // If needed
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-Requested-With,content-type'
-  ); // If needed
-  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
-
+router.get('/', function (req, res) {
   res.send('cors problem fixed:)');
 });
-const server = http.createServer(app);
 
-const io = new Server(server);
 let users = [];
 var removeUser = (userId) =>
   users.find((u, i) => u.ID == userId && users.splice(i, 1));

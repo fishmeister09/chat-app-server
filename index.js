@@ -15,7 +15,7 @@ const { Server } = require('socket.io');
 //   res.send('<h1>Hey Socket.io</h1>');
 // });
 
-router.get('/', function (req, res) {
+app.get('/', function (req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST'); // If needed
   res.setHeader(

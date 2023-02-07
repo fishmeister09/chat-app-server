@@ -5,8 +5,7 @@ const cors = require('cors');
 const { Server } = require('socket.io');
 
 const corsOpts = {
-  origin: 'https://chat-app-q9tg.vercel.app/',
-
+  origin: '*',
   methods: ['GET', 'POST'],
 };
 app.use(cors(corsOpts));

@@ -4,14 +4,14 @@ const http = require('http');
 const cors = require('cors');
 const { Server } = require('socket.io');
 
- const corsOptions ={
-     origin:'*', 
-credentials:true,            //access-control-allow-credentials:true
+const corsOpts = {
+  origin: '*',
 
+  methods: ['GET', 'POST'],
 
- }
-app.use(cors(corsOptions));
-
+  allowedHeaders: ['Content-Type'],
+};
+app.use(cors(corsOpts));
 
 const server = http.createServer(app);
 

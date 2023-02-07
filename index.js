@@ -4,14 +4,15 @@ const http = require('http');
 const cors = require('cors');
 const { Server } = require('socket.io');
 
-const corsOpts = {
-  origin: '*',
+// const corsOpts = {
+//   origin: '*',
 
-  methods: ['GET', 'POST'],
+//   methods: ['GET', 'POST'],
 
-  allowedHeaders: ['Content-Type'],
-};
-app.use(cors(corsOpts));
+//   allowedHeaders: ['Content-Type'],
+// };
+// app.use(cors(corsOpts));
+app.options('*', cors());
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST');

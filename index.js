@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const http = require('http');
-const cors = require('cors');
+// const cors = require('cors');
 const { Server } = require('socket.io');
 
 // const corsOpts = {
@@ -12,10 +12,17 @@ const { Server } = require('socket.io');
 //   allowedHeaders: ['Content-Type'],
 // };
 // app.use(cors(corsOpts));
-app.options('*', cors());
-app.all('/*', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+app.use(function (req, res, next) {
+  res.setHeader(
+    'Access-Control-Allow-Origin',
+    'https://chat-app-q9tg.vercel.app/'
+  );
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-Requested-With,content-type'
+  );
+  res.setHeader('Access-Control-Allow-Credentials', true);
   next();
 });
 app.get('/', (req, res) => {

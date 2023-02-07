@@ -13,7 +13,7 @@ const io = require('socket.io')(server, {
   },
 });
 
-router.get('/', function (req, res) {
+app.get('/', function (req, res) {
   res.send('cors problem fixed:)');
 });
 
